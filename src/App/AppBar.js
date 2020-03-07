@@ -1,16 +1,35 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
+const Logo = styled.div`
+  font-size: 1.5em;
+`
 const Bar = styled.div`
   display: grid;
   grid-template-columns: 180px auto 100px 100px;
+  margin-bottom: 40px;
+`
+const ControlButtonElem = styled.div`
+  cursor: pointer;
+  ${props => props.active && css`
+`}
 `
 
+function ControlButton({name, active}){
+  return(
+    <ControlButtonElem active={active}>
+      {name}
+    </ControlButtonElem>
+  )
+}
+
 export default function() {
-  return <Bar>
-            <div>CryptoCoin</div>
-            <div/>
-            <div>Dashboard</div>
-            <div>Settings</div>
-        </Bar>
+  return (
+    <Bar>
+      <Logo>CryptoCoin</Logo>
+      <div/>
+      <ControlButton active name="Dashboard"/>
+      <ControlButton name="Settings"/>
+    </Bar>
+  )
 }
