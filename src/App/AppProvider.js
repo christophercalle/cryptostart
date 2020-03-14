@@ -6,10 +6,25 @@ export class AppProvider extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      page: 'settings',
-      setPage: this.setPage
+      page: 'dashboard',
+      ...this.savedSettings(),
+      setPage: this.setPage,
+      confirmFavorites: this.confirmFavorites
     }
   }
+
+  confirmFavorites(){
+    console.log('Hello')
+  }
+
+  savedSettings(){
+    let cryptoCoinData = JSON.parse(localStorage.getItem('cryptoCoin'));
+    if (!cryptoCoinData){
+      return {page: 'settings', firstVisit: true}
+    }
+    return {};
+  }
+
   setPage = page => this.setState({page})
 
   render(){
